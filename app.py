@@ -51,19 +51,19 @@ def forbidden_access(e):
     flash('У вас недостаточно прав для выполнения данного действия.', 'danger')
     return redirect(url_for('index')) # <--- Убедитесь, что здесь url_for('index') корректен
 
-# if __name__ == '__main__':
-#     print("Зарегистрированные эндпоинты:")
-#     for rule in app.url_map.iter_rules():
-#         print(f"  {rule.endpoint}: {rule.rule}")
-#     app.run(debug=False, host='0.0.0.0')
-
-
-
-
 if __name__ == '__main__':
     print("Зарегистрированные эндпоинты:")
     for rule in app.url_map.iter_rules():
         print(f"  {rule.endpoint}: {rule.rule}")
+    app.run(debug=False, host='0.0.0.0')
+
+
+
+
+# if __name__ == '__main__':
+#     print("Зарегистрированные эндпоинты:")
+#     for rule in app.url_map.iter_rules():
+#         print(f"  {rule.endpoint}: {rule.rule}")
     
-    # Запуск на localhost с включенной отладкой
-    app.run(debug=True)
+#     # Запуск на localhost с включенной отладкой
+#     app.run(debug=True)
