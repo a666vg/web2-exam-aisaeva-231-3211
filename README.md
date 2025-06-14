@@ -59,9 +59,6 @@
 
 ## 🌐 Развертывание
 
-[![Deployed on Render](https://render.com/images/deploy-button.svg)](https://your-electronic-library.onrender.com) 
-
-> Приложение успешно развернуто на хостинге [Render](https://render.com).   
-🔗 [Открыть приложение](https://your-electronic-library.onrender.com) 
+https://web2-exam-aisaeva-231-3211.onrender.com
 
 ---
