@@ -1,0 +1,28 @@
+{# electronic_library/templates/macros.html #}
+
+{% macro render_field(field, class_name='') %}
+    <div class="mb-3">
+        {{ field.label(class_='form-label') }}
+        {% if field.type == 'FileField' %}
+            {{ field(class_='form-control-file ' + class_name) }}
+        {% elif field.type == 'TextAreaField' %}
+            {{ field(class_='form-control ' + class_name) }}
+        {% elif field.type == 'SelectField' or field.type == 'SelectMultipleField' %}
+            {{ field(class_='form-select ' + class_name) }}
+        {% elif field.type == 'PasswordField' %}
+            {{ field(class_='form-control ' + class_name) }}
+        {% elif field.type == 'BooleanField' %}
+            <div class="form-check">
+                {{ field(class_='form-check-input ' + class_name) }}
+                {{ field.label(class_='form-check-label') }}
+            </div>
+        {% else %}
+            {{ field(class_='form-control ' + class_name) }}
+        {% endif %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endmacro %}

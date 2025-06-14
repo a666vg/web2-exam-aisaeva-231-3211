@@ -1,0 +1,49 @@
+{# electronic_library/templates/book_form.html #}
+{% extends "base.html" %}
+{% from "macros.html" import render_field %}
+
+{% block head %}
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+{% endblock %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.title) }}
+        {{ render_field(form.author) }}
+        {{ render_field(form.publisher) }}
+        {{ render_field(form.publication_year) }}
+        {{ render_field(form.pages) }}
+        {{ render_field(form.genres) }}
+        {{ render_field(form.short_description) }} {# Привязываем EasyMDE к этому полю #}
+
+        {% if action == 'add' %} {# Только для добавления книги #}
+            {{ render_field(form.cover_file) }}
+        {% endif %}
+
+        <div class="d-grid gap-2 mt-4">
+            {{ form.submit(class_='btn btn-primary') }}
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var easyMDE = new EasyMDE({
+        element: document.getElementById('markdown-editor'),
+        spellChecker: false, // Отключаем проверку орфографии
+        autosave: {
+            enabled: true,
+            uniqueId: "book-description",
+            delay: 1000,
+        },
+        renderingConfig: {
+            singleLineBreaks: false, // чтобы Markdown правильно обрабатывал переносы строк
+            codeSyntaxHighlighting: true,
+        },
+    });
+</script>
+{% endblock %}
